@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Cambio Automatico di Colore, Font e Sfondo</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            transition: background-color 0.5s, color 0.5s, font-family 0.5s;
+        }
+
+        /* Impediamo la combinazione di colore di font e sfondo uguale */
+        .color-combo {
+            color: white;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Funzione per generare un colore casuale in formato esadecimale
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        // Funzione per generare un font casuale
+        function getRandomFont() {
+            const fonts = [
+                'Arial, sans-serif',
+                'Verdana, sans-serif',
+                'Montserrat, serif',
+                'Helvetica, serif',
+                'Impact, monospace',
+            ];
+            return fonts[Math.floor(Math.random() * fonts.length)];
+        }
+
+        // Funzione per cambiare il colore di font, sfondo e il font stesso
+        function changeStyles() {
+            const body = document.body;
+            let newTextColor, newBgColor, newFont;
+
+            // Genera colori e font casuali finché non sono diversi
+            do {
+                newTextColor = getRandomColor();
+                newBgColor = getRandomColor();
+                newFont = getRandomFont();
+            } while (newTextColor === newBgColor);
+
+            // Applica i nuovi colori e il nuovo font
+            body.style.color = newTextColor;
+            body.style.backgroundColor = newBgColor;
+            body.style.fontFamily = newFont;
+        }
+
+        // Richiama la funzione per cambiare stili all'avvio della pagina e al refresh
+        window.addEventListener('load', changeStyles);
+        window.addEventListener('beforeunload', changeStyles);
+    </script>
+    <h1>63078</h1>
+</body>
+</html>
